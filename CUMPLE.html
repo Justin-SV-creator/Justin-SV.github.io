@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta de Cumpleaños - Cortinas y Botón</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000; /* Fondo negro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .curtain {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            transition: transform 2s ease-in-out;
+            cursor: pointer;
+            z-index: 3; /* Asegurarse de que las cortinas estén encima */
+        }
+
+        .curtain.left {
+            left: 0;
+            background-image: url('telon izquierdo.jpg'); /* Cambia esta URL por tu imagen */
+            background-size: cover;
+            transform-origin: left;
+            filter: drop-shadow(0 0 10px rgb(255, 0, 0)); /* Sombra roja */
+        }
+
+        .curtain.right {
+            right: 0;
+            background-image: url('telon derecho.jpg'); /* Cambia esta URL por tu imagen */
+            background-size: cover;
+            transform-origin: right;
+            filter: drop-shadow(0 0 10px rgb(0, 0, 255)); /* Sombra azul */
+        }
+
+        .content {
+            display: none; /* Comienza oculto */
+            margin-top: 20px; /* Espacio entre el botón y el mensaje */
+            text-align: center;
+            color: #fff; /* Color del texto blanco */
+            background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco semitransparente */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5); /* Sombra blanca */
+            position: absolute;
+            top: 30%; /* Cambia este valor para mover el mensaje hacia arriba o abajo */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centrar el contenido */
+            z-index: 2; /* Asegúrate de que el contenido esté encima */
+        }  
+
+        h1 {
+            color: rgb(255, 0, 255); /* Color magenta */
+            margin: 0;
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: rgb(0, 255, 255); /* Color cian */
+        }
+
+        h3 {
+            color: red;
+        }
+
+        button {
+            background-color: rgba(255, 0, 255, 0.5); /* Fondo semitransparente magenta */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s;
+            position: absolute; /* Para centrarlo en la pantalla */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centrar el botón */
+            z-index: 4; /* Colocar delante de las cortinas */
+        }
+
+        button:hover {
+            background-color: rgba(255, 0, 255, 0.8); /* Fondo más intenso al pasar el ratón */
+        }
+
+        .image-left,
+        .image-right {
+            position: absolute;
+            width: 25%; /* Ajusta el tamaño de las imágenes */
+            height: auto;
+            top: 50%;
+            transform: translateY(-50%); /* Centrar verticalmente */
+            z-index: 1; /* Colocar detrás del contenido */
+        }
+
+        .image-left {
+            left: 0%; /* Espacio desde el lado izquierdo */
+        }
+
+        .image-right {
+            right: 0%; /* Espacio desde el lado derecho */
+        }
+
+        /* Imagen en la parte inferior central */
+        .image-bottom {
+            position: absolute;
+            width: 15%; /* Ajusta el tamaño de la imagen */
+            height: auto;
+            bottom: 20px; /* Espacio desde la parte inferior */
+            left: 50%; /* Centrar horizontalmente */
+            transform: translateX(-50%); /* Centrar la imagen */
+            z-index: 2; /* Colocar detrás del botón */
+            border-radius: 15px; /* Suavizar los bordes de la imagen */
+        }
+
+        .open-left {
+            transform: translateX(-100%); /* Desplazamiento hacia la izquierda */
+        }
+
+        .open-right {
+            transform: translateX(100%); /* Desplazamiento hacia la derecha */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="curtain left" id="leftCurtain"></div>
+        <div class="curtain right" id="rightCurtain"></div>
+        
+        <button id="pressButton">Sorpresaaa!!</button>
+
+        <div class="content" id="cardContent">
+            <h1>¡Feliz Cumpleaños mi niña🥺🥺❤️❤️!</h1>
+            <h2>Que todos tus sueños se hagan realidad.</h2>
+            <h3>¡Feliz cumpleaños, Wendy! En este día tan especial, 
+                quiero desearte un<a> año lleno de alegría, amor y éxito en todos tus sueños.
+                 Que cada</a><h3> momento esté repleto de sorpresas 
+                y felicidad, y recuerda que si necesitas algo aqui toy</h3>
+                 <h3>¡Disfruta tu día al máximo!</h3>
+
+                 <h5>Ojala te guste sjs</h5>
+        </div>
+
+        <!-- Imágenes en los lados -->
+        <img src="globos.jpg" alt="Imagen Izquierda" class="image-left"> <!-- Cambia esta URL por tu imagen -->
+        <img src="globos.jpg" alt="Imagen Derecha" class="image-right"> <!-- Cambia esta URL por tu imagen -->
+
+        <!-- Imagen en la parte inferior central -->
+        <img src="torta.jpg" alt="Imagen Inferior" class="image-bottom"> <!-- Cambia esta URL por tu imagen -->
+
+        <!-- Audio -->
+        <audio id="myAudio" autoplay loop>
+            <source src="las mañanitas.mp3" type="audio/mpeg"> <!-- Cambia esta URL por tu archivo de audio -->
+            Tu navegador no soporta el audio.
+        </audio>
+    </div>
+
+    <script>
+        // Función para abrir las cortinas automáticamente al cargar la página
+        function abrirCortina() {
+            document.getElementById('leftCurtain').classList.add('open-left');
+            document.getElementById('rightCurtain').classList.add('open-right');
+        }
+
+        // Mostrar el mensaje de cumpleaños al presionar el botón
+        document.getElementById('pressButton').addEventListener('click', function() {
+            document.getElementById('cardContent').style.display = 'block'; // Mostrar el mensaje
+            this.style.display = 'none'; // Ocultar el botón después de presionar
+
+            // Reproducir el audio al presionar el botón
+    var audio = document.getElementById('myAudio');
+    audio.play();
+        });
+
+        // Abrir las cortinas al cargar la página
+        window.onload = abrirCortina;
+    </script>
+</body>
+</html>
